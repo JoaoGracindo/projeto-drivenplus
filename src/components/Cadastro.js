@@ -1,14 +1,14 @@
-import logo from "./../imgs/logo.svg";
-import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 
-export default function Login() {
+export default function Cadastro() {
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
 
 
 
@@ -20,38 +20,44 @@ export default function Login() {
 
     function handleSubmit(e){
         e.preventDefault();
-        const body = {email, password}
+        const body = {name, cpf, email, password};
+        log("entrou?")
 
-        
-        axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
+        axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",
                     body)
-                .then(() => {
-                    localStorage.setItem();
-                    navigate("/")
-                })
+             .then(() => {
+                navigate("/");
+                log("foi")
+             })
+             .catch(() => {
+                log("não foi")
+             })
     }
 
 
-    
+
+
+
 
 
 
 
   return (
-    <StyledLogin>
-      <img src={logo} />
+    <StyledCadastro>
       <form onSubmit={handleSubmit}>
+        <input type="name" placeholder="Nome" name="name" onChange={(e) => setName(e.target.value)}/>
+        <input type="cpf" placeholder="CPF" name="cpf" onChange={(e) => setCpf(e.target.value)}/>
         <input type="email" placeholder="e-mail" name="email" onChange={(e) => setEmail(e.target.value)}/>
         <input type="password" placeholder="password" name="password" onChange={(e) => setPassword(e.target.value)}/>
-        <button>Entrar</button>
+        <button>CADASTRAR</button>
       </form>
-      <Link to="/sign-up">Não possuí uma conta? Cadastre-se</Link>
-    </StyledLogin>
+      <Link to="/">Já possuí uma conta? Entre</Link>
+    </StyledCadastro>
   );
 }
 
-const StyledLogin = styled.div`
-  display: flex;
+const StyledCadastro = styled.div`
+        display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -94,5 +100,5 @@ const StyledLogin = styled.div`
     justify-content: center;
     align-items: center;
     color: #ffffff;
-  }
-`;
+    }
+`
