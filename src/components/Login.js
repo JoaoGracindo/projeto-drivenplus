@@ -1,13 +1,15 @@
 import logo from "./../imgs/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import UserContext from "../contexts/Auth";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const {setPlanInfo, setUserInfo} = useContext(UserContext)
 
 
 
@@ -32,18 +34,31 @@ export default function Login() {
                     localStorage.setItem("userInfo", response.data);
                     if(response.data.membership){
                       navigate("/home")
+                      setPlanInfo(response.data.membership)
+                      
                     }else{
+                      
                       navigate("/subscriptions")
                     }
                     
                 })
-                .catch(() => {
-                    
+                .catch((e) => {
+                    alert(e)
                 })
     }
 
 
-    
+    if(localStorage.getItem("userInfo")){
+      if(localStorage.getItem("userInfo").membership){
+        setPlanInfo({...localStorage.getItem("userInfo").membership})
+        setUserInfo({...localStorage.getItem("userInfo")})
+        navigate("/home")
+        
+      }else{
+        
+        navigate("/subscriptions")
+      }
+    }
 
 
 

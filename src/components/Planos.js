@@ -1,14 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 export default function Planos() {
   const [planos, setPlanos] = useState([]);
+  const navigate = useNavigate();
   const config = {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
+
+
+
+
+
+
+  function handleClick(id){
+    navigate(`/subscriptions/${id}`)
+  }
 
   useEffect(() => {
     axios
@@ -28,7 +39,7 @@ export default function Planos() {
     <StyledPlanos>
       <h1>Escolha seu Plano</h1>
       {planos.map((p) => 
-        <div key={p.id}>
+        <div onClick={() => handleClick(p.id)} key={p.id}>
           <img src={p.image} />
           <p>{p.price}</p>
         </div>

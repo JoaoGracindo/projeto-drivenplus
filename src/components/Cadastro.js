@@ -13,11 +13,6 @@ export default function Cadastro() {
 
 
 
-    function log(a){
-        console.log(a)
-    }
-
-
     function handleSubmit(e){
         e.preventDefault();
         const body = {
@@ -27,16 +22,14 @@ export default function Cadastro() {
             password: password
         };
 
-        log(body)
 
 
         axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",body)
              .then((e) => {
                 navigate("/");
-                log(e)
              })
              .catch((e) => {
-                log(e)
+              alert(e)
              })
     }
 
