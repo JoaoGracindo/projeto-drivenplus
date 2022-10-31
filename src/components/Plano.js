@@ -183,10 +183,13 @@ export default function Plano() {
       </div>
 
       <div className="preco">
-        <img src={preco} />
-        <h4>Preço</h4>
+        <div>
+          <img src={preco} />
+          <h4>Preço:</h4>
+        </div>
+
+        <p>{plano.price} cobrado mensalmente</p>
       </div>
-      <p>{plano.price} cobrado mensalmente</p>
 
       <form
         onSubmit={(e) => {
@@ -268,19 +271,24 @@ const StyledPlano = styled.div`
       color: #ffffff;
     }
 
-
     li {
       font-weight: 400;
       font-size: 14px;
       line-height: 16px;
-        
 
       color: #ffffff;
     }
   }
 
   .preco {
-    h4,
+    position: relative;
+
+    & > div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
     p {
       font-weight: 400;
       font-size: 14px;
@@ -288,6 +296,14 @@ const StyledPlano = styled.div`
 
       color: #ffffff;
     }
+  }
+
+  h4 {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #ffffff;
   }
 
   form {
