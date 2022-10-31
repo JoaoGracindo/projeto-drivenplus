@@ -149,7 +149,6 @@ export default function Plano() {
   }
 
   useEffect(() => {
-    console.log("entrou aqui ");
     axios
       .get(
         `https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${idPlano}`,
@@ -158,7 +157,6 @@ export default function Plano() {
       .then((response) => {
         setPlano({ ...response.data });
         setPerks([...response.data.perks]);
-        console.log(response);
       });
   }, []);
 

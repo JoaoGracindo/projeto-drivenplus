@@ -30,13 +30,14 @@ export default function Home() {
 
   return (
     <StyledHome>
-      <div>
+      <div className="header">
         <img src={planInfo.image} />
         <ion-icon name="person-circle"></ion-icon>
-        <p>Olá, {userInfo.name}</p>
+        
       </div>
+      <p>Olá, {userInfo.name}</p>
 
-      <div>
+      <div className="perks">
         {planInfo.perks.map((p) => (
           <Link to={p.link}>
             <div className="perk">{p.title}</div>
@@ -61,6 +62,24 @@ const StyledHome = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+
+  .header{
+    display:flex;
+    justify-items:space-between;
+    align-items:center;
+  }
+
+  p{
+    margin: 0 auto;
+
+  }
+
+
+  .perks{
+    margin-top:50px;
+    padding:8px;
+
+  }
 
   .cancel {
     display: flex;
