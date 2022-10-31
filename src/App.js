@@ -6,12 +6,16 @@ import Cadastro from "./components/Cadastro";
 import Planos from "./components/Planos";
 import Plano from "./components/Plano";
 import Home from "./components/Home";
+import { useState } from "react";
 
 export default function App() {
+  const [planInfo, setPlanInfo] = useState({})
+  const [userInfo, setUserinfo] = useState({})
+
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <UserContext.Provider value={"joao"}>
+      <UserContext.Provider value={{planInfo, setPlanInfo, userInfo, setUserinfo}}>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sign-up" element={<Cadastro />}/>
