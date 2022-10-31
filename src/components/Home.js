@@ -67,6 +67,8 @@ const StyledHome = styled.div`
     display:flex;
     justify-items:space-between;
     align-items:center;
+    margin-left:5%;
+    margin-right:5%;
   }
 
   p{
