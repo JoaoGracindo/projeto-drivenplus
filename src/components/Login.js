@@ -20,14 +20,25 @@ export default function Login() {
 
     function handleSubmit(e){
         e.preventDefault();
-        const body = {email, password}
+        const body = {
+            email: email,
+            password: password}
 
-        
+
         axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/login",
                     body)
-                .then(() => {
-                    localStorage.setItem();
-                    navigate("/")
+                .then((response) => {
+                    localStorage.setItem("token", response.data.token);
+                    localStorage.setItem("userInfo", response.data);
+                    if(response.data.membership){
+                      navigate("/home")
+                    }else{
+                      navigate("/subscriptions")
+                    }
+                    
+                })
+                .catch(() => {
+                    
                 })
     }
 

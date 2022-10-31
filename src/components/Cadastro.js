@@ -20,17 +20,23 @@ export default function Cadastro() {
 
     function handleSubmit(e){
         e.preventDefault();
-        const body = {name, cpf, email, password};
-        log("entrou?")
+        const body = {
+            email: email,
+            name: name,
+            cpf: cpf,
+            password: password
+        };
 
-        axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",
-                    body)
-             .then(() => {
+        log(body)
+
+
+        axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up",body)
+             .then((e) => {
                 navigate("/");
-                log("foi")
+                log(e)
              })
-             .catch(() => {
-                log("não foi")
+             .catch((e) => {
+                log(e)
              })
     }
 

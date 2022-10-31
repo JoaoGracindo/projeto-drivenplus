@@ -3,6 +3,9 @@ import UserContext from "./contexts/Auth"
 import Login from "./components/Login";
 import { createGlobalStyle } from "styled-components";
 import Cadastro from "./components/Cadastro";
+import Planos from "./components/Planos";
+import Plano from "./components/Plano";
+import Home from "./components/Home";
 
 export default function App() {
   return (
@@ -12,6 +15,9 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/sign-up" element={<Cadastro />}/>
+          <Route path="/subscriptions" element={<Planos/>}/>
+          <Route path="/subscriptions/:idPlano" element={<Plano/>}/>
+          <Route path="/home" element={<Home/>}/>
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>
